@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const fetch = require('node-fetch') ;
 const cors = require('cors');
 
+require('dotenv').config();
 // Initialize Express app
 const app = express();
 app.use(bodyParser.json());
@@ -24,7 +25,8 @@ const messageSchema = new mongoose.Schema({
 const Message = mongoose.model('Message', messageSchema);
 
 // Telegram Bot details
-const botToken = ''; // Replace with Telegram bot token
+const botToken = process.env.SECRET_TOKEN;
+
 const groupChatId = '-1002229716632'; // Replace with group chat ID
 
 // Endpoint to send a message
