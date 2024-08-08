@@ -24,7 +24,7 @@ const messageSchema = new mongoose.Schema({
 const Message = mongoose.model('Message', messageSchema);
 
 // Telegram Bot details
-const botToken = '7000165352:AAGZhWEzFMCSbLLNW-uKPjx0S0BptCzMI9A'; // Replace with Telegram bot token
+const botToken = ''; // Replace with Telegram bot token
 const groupChatId = '-1002229716632'; // Replace with group chat ID
 
 // Endpoint to send a message
@@ -41,6 +41,7 @@ app.post('/send-message', async (req, res) => {
         await newMessage.save();
 
         // Send message to Telegram
+        // axios
         const response = await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
             method: 'POST',
             headers: {
