@@ -1,4 +1,3 @@
-// server.js
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
@@ -6,23 +5,19 @@ const fetch = require('node-fetch') ;
 const cors = require('cors');
 
 require('dotenv').config();
+
+const Message = require('./models/Message'); // Import the Message model
+
 // Initialize Express app
 const app = express();
 app.use(bodyParser.json());
 app.use(cors());
 
 // Connect to MongoDB
-mongoose.connect('mongodb+srv://itrikiatt:itrikiatt@cluster0.jsi3wz1.mongodb.net/chatbot-telegram?retryWrites=true&w=majority&appName=Cluster0', {
+mongoose.connect(process.env.MONGODB_URL_CONNECTION, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 });
-
-// Define Message schema and model
-const messageSchema = new mongoose.Schema({
-    username: String,
-    text: String,
-});
-const Message = mongoose.model('Message', messageSchema);
 
 // Telegram Bot details
 const botToken = process.env.SECRET_TOKEN;
